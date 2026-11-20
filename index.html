@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voidt — Toko Baju Modern</title>
+    <!-- Menggunakan Tailwind CSS untuk desain modern & responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Menggunakan Font Google (Plus Jakarta Sans) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-tight text-gray-900">Voidt<span class="text-amber-600">.</span></a>
+            
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+                <a href="#beranda" class="hover:text-amber-600 transition">Beranda</a>
+                <a href="#katalog" class="hover:text-amber-600 transition">Katalog</a>
+                <a href="#tentang" class="hover:text-amber-600 transition">Tentang Kami</a>
+            </div>
+
+            <button onclick="toggleCart()" class="relative bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-800 transition flex items-center gap-2">
+                <span>Keranjang</span>
+                <span id="cart-count" class="bg-amber-500 text-gray-900 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="beranda" class="bg-stone-100 py-16 md:py-24">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+            <div>
+                <span class="text-amber-700 font-semibold text-sm uppercase tracking-wider">Koleksi Terbaru 2026</span>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mt-2 leading-tight">Gaya Simpel, Nyaman Dipakai Seharian.</h1>
+                <p class="text-gray-600 mt-4 text-base md:text-lg leading-relaxed">Temukan koleksi pakaian harian dengan bahan katun premium yang adem, potongan rapi, dan mudah dipadupadankan.</p>
+                <div class="mt-8 flex gap-4">
+                    <a href="#katalog" class="bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition">Belanja Sekarang</a>
+                </div>
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-lg">
+                <img src="file:///C:/Users/ACER/Downloads/ess.webp" alt="Fashion Model" class="w-full h-80 md:h-96 object-cover">
+            </div>
+        </div>
+    </header>
+
+    <!-- KATALOG PRODUK -->
+    <section id="katalog" class="max-w-6xl mx-auto px-4 py-16">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900">Katalog Produk</h2>
+                <p class="text-gray-500 text-sm mt-1">Pilih produk favoritmu dan pesan langsung via WhatsApp</p>
+            </div>
+            
+            <!-- Filter Kategori -->
+            <div class="flex flex-wrap gap-2" id="filter-buttons">
+                <button onclick="filterProducts('semua')" class="filter-btn active bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium">Semua</button>
+                <button onclick="filterProducts('pria')" class="filter-btn bg-white text-gray-700 border px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100">Pria</button>
+                <button onclick="filterProducts('wanita')" class="filter-btn bg-white text-gray-700 border px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100">Wanita</button>
+                <button onclick="filterProducts('outerwear')" class="filter-btn bg-white text-gray-700 border px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100">Outerwear</button>
+            </div>
+        </div>
+
+        <!-- Grid Produk (Diisi otomatis oleh JavaScript) -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+    </section>
+
+    <!-- TENTANG / KEUNGGULAN -->
+    <section id="tentang" class="bg-white border-t py-14">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8 text-center">
+            <div class="p-6">
+                <div class="text-3xl mb-3">🌿</div>
+                <h3 class="font-bold text-lg">Bahan Katun Premium</h3>
+                <p class="text-gray-500 text-sm mt-2">Menyerap keringat dengan baik dan tetap lembut setelah dicuci berkali-kali.</p>
+            </div>
+            <div class="p-6">
+                <div class="text-3xl mb-3">🚚</div>
+                <h3 class="font-bold text-lg">Pengiriman Cepat</h3>
+                <p class="text-gray-500 text-sm mt-2">Pesanan diproses di hari yang sama untuk pembayaran sebelum jam 15.00 WIB.</p>
+            </div>
+            <div class="p-6">
+                <div class="text-3xl mb-3">🔄</div>
+                <h3 class="font-bold text-lg">Garansi Tukar Ukuran</h3>
+                <p class="text-gray-500 text-sm mt-2">Ukuran kurang pas? Bisa tukar ukuran maksimal 3 hari setelah barang diterima.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm">
+        <p>&copy; 2026 AURA APPAREL. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- SIDEBAR KERANJANG BELANJA -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex justify-end">
+        <div class="bg-white w-full max-w-md h-full flex flex-col justify-between p-6 shadow-2xl">
+            <div>
+                <div class="flex justify-between items-center border-b pb-4">
+                    <h3 class="text-xl font-bold text-gray-900">Keranjang Belanja</h3>
+                    <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-900 text-2xl">&times;</button>
+                </div>
+                <div id="cart-items" class="mt-4 space-y-4 max-h-[60vh] overflow-y-auto">
+                    <p class="text-gray-500 text-sm text-center py-10">Keranjang masih kosong.</p>
+                </div>
+            </div>
+
+            <div class="border-t pt-4">
+                <div class="flex justify-between font-bold text-lg mb-4">
+                    <span>Total Harga:</span>
+                    <span id="cart-total">Rp 0</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center gap-2">
+                    <span>Pesan via WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIKA TOKO -->
+    <script>
+        // 1. DATA PRODUK (Silakan ubah nama, harga, kategori, dan link gambar di sini)
+        const products = [
+            { id: 1, name: "Kemeja Linen Kasual", category: "pria", price: 185000, image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80" },
+            { id: 2, name: "Blouse Katun Minimalis", category: "wanita", price: 165000, image: "https://images.unsplash.com/photo-1551163943-3f6a855d1153?auto=format&fit=crop&w=600&q=80" },
+            { id: 3, name: "Jaket Denim Klasik", category: "outerwear", price: 299000, image: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=600&q=80" },
+            { id: 4, name: "Kaos Oversize Heavyweight", category: "pria", price: 120000, image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80" },
+            { id: 5, name: "Midi Dress Floral", category: "wanita", price: 235000, image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600&q=80" },
+            { id: 6, name: "Cardigan Rajut Hangat", category: "outerwear", price: 210000, image: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        // Nomor WhatsApp Admin (Ganti dengan nomor Anda, awali dengan 62)
+        const nomorWhatsApp = "6281234567890"; 
+
+        let cart = [];
+
+        // Format Rupiah
+        const formatRupiah = (angka) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+
+        // Menampilkan Produk
+        function renderProducts(filter = 'semua') {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'semua' ? products : products.filter(p => p.category === filter);
+
+            filtered.forEach(product => {
+                grid.innerHTML += `
+                    <div class="bg-white rounded-xl overflow-hidden shadow-sm border hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-72 object-cover">
+                            <div class="p-5">
+                                <span class="text-xs uppercase font-semibold text-amber-600">${product.category}</span>
+                                <h3 class="font-bold text-lg text-gray-900 mt-1">${product.name}</h3>
+                                <p class="text-gray-700 font-semibold mt-2">${formatRupiah(product.price)}</p>
+                            </div>
+                        </div>
+                        <div class="px-5 pb-5">
+                            <button onclick="addToCart(${product.id})" class="w-full bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-amber-600 transition">
+                                + Tambah ke Keranjang
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Filter Kategori
+        function filterProducts(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-gray-900', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700');
+            });
+            event.target.classList.remove('bg-white', 'text-gray-700');
+            event.target.classList.add('bg-gray-900', 'text-white');
+            renderProducts(category);
+        }
+
+        // Tambah ke Keranjang
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            updateCartUI();
+        }
+
+        // Hapus dari Keranjang
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        // Update Tampilan Keranjang
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            cartCount.innerText = totalQty;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-500 text-sm text-center py-10">Keranjang masih kosong.</p>';
+                cartTotal.innerText = 'Rp 0';
+                return;
+            }
+
+            let totalHarga = 0;
+            cartItems.innerHTML = '';
+
+            cart.forEach(item => {
+                totalHarga += item.price * item.qty;
+                cartItems.innerHTML += `
+                    <div class="flex justify-between items-center border-b pb-3">
+                        <div>
+                            <h4 class="font-semibold text-sm">${item.name}</h4>
+                            <p class="text-xs text-gray-500">${item.qty} x ${formatRupiah(item.price)}</p>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 text-xs hover:underline">Hapus</button>
+                    </div>
+                `;
+            });
+
+            cartTotal.innerText = formatRupiah(totalHarga);
+        }
+
+        // Buka/Tutup Keranjang
+        function toggleCart() {
+            document.getElementById('cart-modal').classList.toggle('hidden');
+        }
+
+        // Checkout ke WhatsApp
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return alert("Keranjang belanja Anda masih kosong!");
+
+            let pesan = "Halo Admin AURA APPAREL, saya ingin memesan:%0A%0A";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                pesan += `${index + 1}. ${item.name} (${item.qty}x) - ${formatRupiah(item.price * item.qty)}%0A`;
+                total += item.price * item.qty;
+            });
+
+            pesan += `%0A*Total Pembayaran: ${formatRupiah(total)}*%0A%0AMohon info ketersediaan stok dan ongkos kirimnya. Terima kasih!`;
+
+            window.open(`https://wa.me/${nomorWhatsApp}?text=${pesan}`, '_blank');
+        }
+
+        // Jalankan saat pertama dibuka
+        renderProducts();
+    </script>
+</body>
+</html>
